@@ -1,0 +1,14 @@
+This is the collection of codes used in analysis of european POPRES data
+(see Nelson et al, http://www.ncbi.nlm.nih.gov/pubmed/18760391; 
+obtain access to data at http://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs000145.v1.p1 .)
+for the paper "The geography of recent genetic ancestry across Europe", 
+by Peter Ralph and Graham Coop, http://arxiv.org/abs/1207.3815 (to appear elsewhere SHORTLY).
+
+To see what makes what, see the makefile.
+
+Most of the files are pretty clean, but a few have some clutter.
+
+None will actually do anything without obtaining the POPRES data and running BEAGLE http://faculty.washington.edu/browning/beagle/beagle.html on them.
+
+Please use these if they are useful, and credit us if appropriate.
+
