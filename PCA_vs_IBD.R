@@ -13,7 +13,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-source("~/projects/genome/ibd-blocks-fns.R")
+source(ibd-blocks-fns.R")
 
 load("eda-data-fine.Rdata")
 
@@ -101,3 +101,4 @@ text( country.means, labels=countryabbrevs )
 points( country.means, pch=21, col=NA, bg=adjustcolor(countrycols,.25), cex=4 )
 legend( "topright",pt.bg=countrycols,legend=countryabbrevs,pch=country.symbol,col=NA,cex=8/12,pt.cex=0.9)
 dev.off()
+

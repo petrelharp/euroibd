@@ -13,8 +13,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
-source("/home/peter/projects/genome/laplace-inversion-fns.R")  # for adjust.hist
+source("ibd-blocks-fns.R")
+source("laplace-inversion-fns.R")  # for adjust.hist
 
 load("all-blocks-winnowed.Rdata")
 
@@ -26,6 +26,10 @@ chrmap$map <- chrmap$map + .chrstarts[chrmap$chr]
 # Rearrange so map position increases
 chrmap <- chrmap[ order( chrmap$map, chrmap$bp ), ]
 all( diff(chrmap$map)>=0 ) # TRUE
+
+
+
+
 
 ###########
 # Compute number of overlapping blocks in different length categories along the genome
@@ -89,3 +93,4 @@ hilight <- c( hilight, with(centromeres, lapply( centros, function (k) { c( chro
 # hilight <- c( hilight, with(inversions, lapply( 1:nrow(inversions), function (k) { c( chr[k], mapstart[k], mapend[k] ) } ) ) )
 
 save(olaps, centros, centromeres, hilight, chrmap, lens, windowsize, ylims, file="overlaps.RData")
+

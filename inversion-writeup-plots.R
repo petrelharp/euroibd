@@ -13,8 +13,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-source("/home/peter/projects/genome/laplace-inversion-fns.R")
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
+source("ibd-blocks-fns.R")
+source("laplace-inversion-fns.R")
 
 load("eda-data-fine.Rdata")
 

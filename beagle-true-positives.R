@@ -13,7 +13,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
+source("ibd-blocks-fns.R")
 
 if (file.exists("true-pos-everything.Rdata")) {
     load("true-pos-everything.Rdata")
@@ -109,7 +109,6 @@ if (file.exists("true-pos-everything.Rdata")) {
     # Save!
     save(rawblocks, obsblocks, tblocks, hapinds, matches, allgaps, missedgaps, file="true-pos-everything.Rdata")
 }
-
 if (FALSE) {
 
 png(file="alltrue-inferred-blocks.png", width=10*144, height=8*144, res=144)
@@ -245,6 +244,9 @@ lines(mlvals, logit( predict(powerlenscore,newdata=data.frame(maplen=mlvals), ty
 powerlenscoreq <- glm( (ninferred>0 & score<1e-9) ~ maplen + I(sqrt(maplen)), data=tblocks[tblocks$maplen>0.5,], family=binomial)
 lines(mlvals, logit( predict(powerlenscoreq,newdata=data.frame(maplen=mlvals), type="response") ), lty=2 )
 
+
+
+
 pdf("power-and-trueinferred-maplen.pdf", height=6, width=7.5, title="Power simulations", pointsize=14)
 pmai <- par("mai")
 par(mai=pmai*c(0,1,1/2,1))
@@ -271,5 +273,4 @@ text(20,0,labels="B",cex=3,pos=3)
 
 
 dev.off()
-
 }

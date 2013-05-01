@@ -705,22 +705,25 @@ conditional.means <- function (x,n,tabx=table(x)) {
 tsample <- function (x,n) { if(length(x)==1 & n>0) { x } else { sample(x,min(length(x),n)) } }
 
 ## On maps
-require(maps)
+require(rgdal)
 
-euplot <- function (x,scale=15,lab,cols=countrycols,mincex=.25,
-    longs=indivinfo$long[match(names(x),indivinfo$COUNTRY_SELF)],
-    lats=indivinfo$lat[match(names(x),indivinfo$COUNTRY_SELF)],
-    legend=FALSE,
-    ...) {
-    map("world",xlim=c(-10,38), ylim=c(35,61),proj="globular",col=grey(.50),mar=c(1,1,1,1),resolution=0, ...)
-    xy <- mapproject( longs, lats )  # note: uses previous projection, passing this in messes it up.
-    points( xy$x, xy$y, cex=pmax(mincex,sqrt(scale*abs(x))), pch=21, col=ifelse(x>0,"black","red"), bg=adjustcolor(cols[names(x)],.5), ... )
+euplot <- function (x,scale=15,lab,themap,cols=countrycols,mincex=.25,
+        longs=indivinfo$long[match(names(x),indivinfo$COUNTRY_SELF)],
+        lats=indivinfo$lat[match(names(x),indivinfo$COUNTRY_SELF)],
+        legend=FALSE,legendloc=c(35,60),legendunits="",
+        ...) {
+    # map("world",xlim=c(-10,38), ylim=c(35,61),proj="globular",col=grey(.50),mar=c(1,1,1,1),resolution=0, ...)
+    # xy <- mapproject( longs, lats )  # note: uses previous projection, passing this in messes it up.
+    xylims <- project( cbind(long=c(-10,38),lat=c(35,61)), proj=proj4string(themap) )
+    plot( themap, xlim=xylims[,1], ylim=xylims[,2], mar=c(1,1,1,1), border=grey(.5) )
+    xy <- project( cbind(longs,lats), proj=proj4string(themap) )
+    points( xy[,1], xy[,2], cex=pmax(mincex,sqrt(scale*abs(x))), pch=21, col=ifelse(x>0,"black","red"), bg=adjustcolor(cols[names(x)],.5), ... )
     if (!missing(lab)) { text( par("usr")[1:2]%*%c(.95,.05), par("usr")[4:3]%*%c(.95,.05), lab, pos=4, cex=1.2 ) }
     if (legend) {
-        topleft <- mapproject( 35, 60 )
+        topleft <- project( cbind(legendloc[1],legendloc[2]), proj=proj4string(themap) )
         legsize <- 10^(floor(log10(12^2/scale)))
-        points( topleft$x, topleft$y, cex=sqrt(scale*legsize), pch=21 )
-        text( topleft$x, topleft$y, labels=legsize, cex=.75 )
+        points( topleft[,1], topleft[,2], cex=sqrt(scale*legsize), pch=21 )
+        text( topleft[,1], topleft[,2], labels=paste(legsize,legendunits), pos=4, cex=.75, offset=0 )
     }
     return( invisible( xy ) )
 }

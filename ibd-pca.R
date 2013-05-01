@@ -13,13 +13,13 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
-source("/home/peter/projects/genome/laplace-inversion-fns.R")
+source("ibd-blocks-fns.R")
+source("laplace-inversion-fns.R")
 
 
 # Actual blocks and other metainformation
-load("../ibdblocks/all-blocks-winnowed-fine.Rdata")
-load("../ibdblocks/eda-data-fine.Rdata")
+load("all-blocks-winnowed-fine.Rdata")
+load("eda-data-fine.Rdata")
 # make a variable which is country-pair
 blocks$countrypair <- countrypairs[cbind(as.numeric(blocks$country1),as.numeric(blocks$country2))]
 # and individual-pair

@@ -16,18 +16,8 @@
 
 
 ##find rels
-ibis<-TRUE
-if(ibis){
-	.basedir <- system("ls -d /home/ibd/ /home/peter/projects/ibd/", intern=TRUE, ignore.stderr=TRUE)[1]
-	.pcadir<-paste(.basedir,"data/POPRES/pca_euro/",sep="")
-	.geogdir <- paste(.basedir,"data/POPRES/european_labels/",sep="")
-}else{
-	.basedir <- ""
-	.pcadir<-""
-	.geogdir <-""
-	}
 
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
+source("ibd-blocks-fns.R")
 
 #indivinfo<-read.table("/home/ibd/data/POPRES/european_labels/Euro-samples-info.tsv",head=TRUE,as.is=TRUE)
 indivinfo<-getsampleinfo(remove.qc=TRUE) 

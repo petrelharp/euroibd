@@ -15,7 +15,7 @@
 #
 # Find false positive rate from beagle runs on randomly mixed up chromosomes.
 
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
+source("ibd-blocks-fns.R")
 
 # Load in false positives
 if (!file.exists("false-pos-everything.Rdata")) {

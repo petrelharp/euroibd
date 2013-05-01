@@ -93,7 +93,7 @@ europe.countries<-in.Europe[in.Europe$V1==1,2]
 reduced.euro<-euro[euro$COUNTRY_SELF %in% europe.countries,]
 ancs.in.euro<- apply(reduced.euro[,c("COUNTRY_FATHER","COUNTRY_MOTHER","COUNTRY_MGF","COUNTRY_MGM","COUNTRY_PGF","COUNTRY_PGM")],1,function(kin){ all(kin %in% c(europe.countries,"")) } )
 keep.euro <- subset( reduced.euro, STATUS_PASSED_QC2=="Y" & ancs.in.euro )$SUBJID
-euro$KEEP_EURO <- euro$SUBJID %in% keep.euro
+euro$KEEP_EURO <- euro$SUBJID %in% keep.euro$V1
 
 ## read in geographic information
 data(world.cities)

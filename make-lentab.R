@@ -1,4 +1,4 @@
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
+source("ibd-blocks-fns.R")
 load("all-blocks-winnowed-fine.Rdata")
 load("eda-data-fine.Rdata")
 

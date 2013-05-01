@@ -17,10 +17,10 @@
 
 ###
 # Do sensitivity analysis with simulation results (produced by coalpedigree)
-source("~/projects/genome/laplace-inversion-fns.R")
-source("~/projects/genome/ibd-blocks-fns.R")
+source("laplace-inversion-fns.R")
+source("ibd-blocks-fns.R")
 source("sim-params.R")  # gets simopts and coalprob()
-source("~/projects/coalpedigree/parse-sims-fns.R")  # gets simopts and coalprob()
+source("parse-sims-fns.R")  # gets simopts and coalprob()
 
 ploidy <- 2
 prefixes <- c(

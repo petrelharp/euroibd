@@ -16,7 +16,7 @@
 #!/usr/bin/R
 # Do some EDA on the final set of blocks
 
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
+source("ibd-blocks-fns.R")
 
 if (!file.exists("all-blocks-winnowed-fine.Rdata")) {
     blocks <- lapply(1:22, function (chrom) { getblocks(chrom, "winnowed", resolution="fine", remove.qc=TRUE) } )

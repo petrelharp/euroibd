@@ -13,8 +13,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-source("/home/peter/projects/genome/ibd-blocks-fns.R")
-source("/home/peter/projects/genome/laplace-inversion-fns.R")
+source("ibd-blocks-fns.R")
+source("laplace-inversion-fns.R")
+
 
 ##########
 # Power and false positives
@@ -24,7 +25,6 @@ load("../false-pos/false-pos-winnowed.Rdata")
 # Actual blocks and other metainformation
 load("../ibdblocks/all-blocks-winnowed-fine.Rdata")
 load("../ibdblocks/eda-data-fine.Rdata")
-
 # make a variable which is country-pair
 blocks$countrypair <- countrypairs[cbind(as.numeric(blocks$country1),as.numeric(blocks$country2))]
 # and individual-pair
@@ -49,6 +49,7 @@ newcats <- list(
 
 #######
 # False pos, power, and various observed distributions
+
 
 # divide pairs by distance
 citydists <- getcitydists()
@@ -107,6 +108,7 @@ dev.off()
 ###
 # Barplot of IBD rates
 
+
 # ... or: plot the matrices --
 ## Indices in poppairs to pull out a (symmetric) matrix
 clist <- c("United Kingdom", "Ireland", "Germany", "Swiss German", "Swiss French", "France", "Spain", "Portugal", "Italy", "Yugoslavia", "Hungary", "Poland")
@@ -120,6 +122,7 @@ rate.matrix.1cM <- matrix( poppairs$nblocks1cM[ind.matrix]/poppairs$npairs[ind.m
 rate.matrix.5cM <- matrix( poppairs$nblocks5cM[ind.matrix]/poppairs$npairs[ind.matrix], nrow=length(rlist), dimnames=dimnames(ind.matrix))
 rate.matrix.10cM <- matrix( poppairs$nblocks10cM[ind.matrix]/poppairs$npairs[ind.matrix], nrow=length(rlist), dimnames=dimnames(ind.matrix))
 npair.matrix <- matrix( poppairs$npairs[ind.matrix], nrow=length(rlist), dimnames=dimnames(ind.matrix))
+
 
 rlist <- intersect( gsub("."," ", c(mideasterns,southerns,westerns,northerns,rev(easterns)), fixed=TRUE ), names(nsamples) )
 pdf(file="sharing-rates-dotchart-long.pdf", width=8, height=20, pointsize=10)
@@ -145,9 +148,12 @@ mplot <- function (x,scale=15,label=x,cols=adjustcolor(countrycols[countries],.5
 }
 
 
+
+
 ####
 # Plot example blocks and block density along the genome
 load("overlaps.RData")
+
 
 # for paper:
 nrandoms <- 24
