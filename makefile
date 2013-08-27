@@ -3,12 +3,14 @@
 # Caveat utilitorum: This is intended as a guide. Making everything from this make file will at least result in syntax errors and long run times.
 # Some of the below is pseudo-make code.  If you are serious about doing this and can't figure out what's supposed to happen, drop us a line.
 # 
-# Inputs not included here:
-# Europeans.out -- sample info from POPRES
-# POPRES data: transformed to BEAGLE input and named POPRES_chr%.beagle.gz
-# HAPMAP trio-phased data
-# europeans.imiss made with `plink --file data --missing `
-# kin.genome.gz is also made with plink.
+# Inputs not included here, but with very small example files (prefixed "example-", e.g. "example-POPRES_chr22.beagle.gz") present for reference:
+#   Europeans.out -- sample info from POPRES
+#   POPRES data: transformed to BEAGLE input and named POPRES_chr%.beagle.gz
+#   europeans.imiss made with `plink --file data --missing ` -- see http://pngu.mgh.harvard.edu/~purcell/plink/summary.shtml for documentation
+#   kin.genome.gz is also made with plink, as http://pngu.mgh.harvard.edu/~purcell/plink/ibdibs.shtml#genome
+#
+# Also not included, but publically available:
+#   HAPMAP trio-phased data -- from http://hapmap.ncbi.nlm.nih.gov/downloads/phasing/2009-02_phaseIII/HapMap3_r2/CEU/TRIOS/
 
 .PHONY : real-data false-pos-sims true-pos-sims chrom1 chrom2 chrom3 chrom4 chrom5 chrom6 chrom7 chrom8 chrom9 chrom10 chrom11 chrom12 chrom13 chrom14 chrom15 chrom16 chrom17 chrom18 chrom19 chrom20 chrom21 chrom22 
 

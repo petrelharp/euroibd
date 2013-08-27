@@ -1,0 +1,4 @@
+"SubjID" "SUBJID" "AGE" "BATCH" "COUNTRY_FATHER" "COUNTRY_MGF" "COUNTRY_MGM" "COUNTRY_MOTHER" "COUNTRY_PGF" "COUNTRY_PGM" "COUNTRY_SELF" "GROUPING_COLLECTION" "GROUPING_CONTINENTAL_ORIGIN" "GROUPING_PCA_LABEL1" "GROUPING_PCA_LABEL2" "POPRES_GENDER" "PRIMARY_LANGUAGE" "POPRES_GENDER_INFERRED" "STATUS_OVERALL" "STATUS_PASSED_QC1" "STATUS_PASSED_QC2" "NA"
+"1" 11111 11 62 "6" "France" "France" "France" "France" "Italy" "Italy" "France" "Lausanne" "European" "Mix" "Mix" "Female" "French" "N" "Passed QC" "Y" "Y" NA
+"2" 22222 22 25 "6" "France" "Switzerland" "Switzerland" "Switzerland" "France" "France" "Ivory Coast" "Lausanne" "European" "Mix" "Mix" "Female" "French" "N" "Passed QC" "Y" "Y" NA
+"3" 33333 33 19 "6" "Netherlands" "Netherlands" "Netherlands" "Netherlands" "Netherlands" "Netherlands" "Netherlands" "Lausanne" "European" "Netherlands" "EuropeC" "Female" "Dutch" "N" "Passed QC" "Y" "Y" NA
