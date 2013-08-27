@@ -12,3 +12,10 @@ None will actually do anything without obtaining the POPRES data and running BEA
 
 Please use these if they are useful, and credit us if appropriate.
 
+--------------
+
+Notes:
+
+* The .gmap files provide a mapping from the endpoint indices that BEAGLE uses to genetic distances (e.g. in centiMorgans).  Important: BEAGLE uses 0-based indices.
+
+* BEAGLE 3.0 is out, and improved over the version we used.
