@@ -20,4 +20,4 @@ Notes:
 
 * The .gmap files provide a mapping from the endpoint indices that BEAGLE uses to genetic distances (e.g. in centiMorgans).  Important: BEAGLE uses 0-based indices.
 
-* BEAGLE 3.0 is out, and improved over the version we used.
+* BEAGLE 4.0 is out, and improved over the version we used (3.3).
