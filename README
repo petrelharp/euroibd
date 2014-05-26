@@ -14,6 +14,44 @@ None will actually do anything without obtaining the POPRES data and running BEA
 
 Please use these if they are useful, and credit us if appropriate.
 
+
+--------------
+
+If you are looking to use the inference method, look for the functions sinv() and squoosh().
+
+Also, linv() gives the least-squares approximation, useful for finding a good starting point.
+
+For instance, see the block in inversion-writeup-plots.R that sets things up to infer histories for all the pairs of populations:
+
+# Set-up: the operator L and the false positive rate estimates:
+gens <- cumsum( rep(1:36, each=10) )
+L <- error.disc.trans( lenbins=lenbins, gens=gens, chrlens=.chrlens[setdiff(seq_along(.chrlens),omitchroms)] )) # this takes a while!! do it once and save.
+fp <- disc.fp(lenbins, chrlens=.chrlens)
+fp <- runmed(fp,k=15)
+# Set-up for intial least-squares estimate:
+S <- as.vector( smooth( hist( blocks$maplen, breaks=c(lenbins,100), plot=FALSE )$counts ) )
+S <- S/mean(S)
+S[lenbins>20] <- exp( predict( lm( log(S) ~ lenbins + I(lenbins^2), subset=(lenbins>20) & (S>0) ), newdata=list(lenbins=lenbins[lenbins>20]) ) )
+est.Sigma <- function ( np, X, alpha=100 ) {
+    # estimate Sigma by combining the population average with the smoothed, observed data
+    # where Sigma is the covariance matrix of X/np
+    smX <- as.vector( smooth(X) )
+    ppp <- (alpha*np/(2543640+alpha*np))  # 2543640 = total # pairs
+    Sigma <- ppp*smX + (1-ppp)*sum(smX)*S/sum(S)
+    return( Sigma/np^2 )
+}
+Ksvd <- svd( 1/sqrt(as.vector(S)) * L )  # pre-compute SVD of L
+total.npairs <- choose( length(unique(blocks$id1)), 2 )
+linverse <- linv( X=lendist/total.npairs, S=as.vector(S), Sigma=est.Sigma(np=total.npairs,X=lendist), Ksvd=Ksvd, maxk=30, fp=fp )
+sminverse <- smoothed.nonneg( lS=linverse, Ksvd=Ksvd, bestk=15, lam=1 )
+
+# Here is where we get the actual estimate:
+ans <- sinv( lendist, sminverse, L, fp, npairs=total.npairs, lam=0, gamma=1e6 )
+
+# squoosh iterates sinv, looking for the smoothest solution that drops no more than 2 units of log-likelihood
+smooth = squoosh( lendist, xinit=ans, L, fp, npairs=ans$npairs, minlen=minlen, gamma=100, lam=0, fitfn="loglik", relthresh=2/ans$npairs, twid=.05 )
+
+
 --------------
 
 Notes:
